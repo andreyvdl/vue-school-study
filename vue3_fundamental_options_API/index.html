@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Shopping List App</title>
+	</head>
+	<body>
+		<div id="shopping-list">
+			<h1>{{ header || "No Header" }}</h1>
+			<input v-model.trim="new_item" type="text" placeholder="Add a new item" />
+			<label>
+				<input type="checkbox" v-model="new_item_high_priority"> High Priority
+			</label>
+			<br>
+			<ul>
+				<li v-for="{id, text} in items" :key="id">{{ text }}</li>
+			</ul>
+		</div>
+		<script src="https://unpkg.com/vue@3"></script>
+		<script>
+			const shopping_list = Vue.createApp({
+				data() {
+					let ids = 0
+					return {
+						header: "Shopping List App",
+						new_item: "",
+						new_item_high_priority: false,
+						items: [
+							{id: ids++, text: "10 party hats"},
+							{id: ids++, text: "2 board games"},
+							{id: ids++, text: "20 cups"},
+						],
+					}
+				}
+			})
+			.mount('#shopping-list')
+		</script>
+	</body>
+</html>
